@@ -1,0 +1,14 @@
+{
+	"files": {
+		"Readme.md": "57b5a0b8f8971c5b0950b78ab1d59c2eb7f6059a908af6bf609e8e7ac8104fc9",
+		"index.js": "3e05d330d4c06a12cb099d24a3bc31c0b900af6c324ce7c1f68c78ae36ce2e3d",
+		"module.json": "59684b6ff6067f7391af10229761d2844826e174b1a96540a5ff39e8536a1283"
+	},
+	"defs": {
+		"C_LOAD_TOPO_FIN": 1,
+		"C_PCBANGINVENTORY_USE_SLOT": 1,
+		"S_LOAD_TOPO": 3,
+		"S_LOGIN": 10,
+		"S_PCBANGINVENTORY_DATALIST": 1
+	}
+}
