@@ -1,8 +1,12 @@
 {
 	"disableAutoUpdate": false,
+	"name": "Auto Club Rewards",
+	"author": "Shalltearz",
+	"description": "No description given cause readme.",
+	"version": "Undefined",
 	"options": {
 		"niceName": "Auto Club Rewards"
 	},
-    "servers": ["https://raw.githubusercontent.com/Tera-Shiraneko/auto-club-rewards/master/"],
-    "supportUrl": "https://github.com/Tera-Shiraneko/auto-club-rewards/issues"
+	"servers": ["https://raw.githubusercontent.com/Tera-Shiraneko/auto-club-rewards/master/"],
+	"supportUrl": "https://github.com/Tera-Shiraneko/auto-club-rewards/issues"
 }
