@@ -16,7 +16,7 @@
 ---
 
 ## Note
-- If you are setting up the module for the first time you have to relog to make it work.
 - You can enter multiple names at once which should be done with an comma between them.
+- If you are setting up the module for the first time you have to relog to make it work.
 - If you add multiple names the rewards will be claimed on the first character.
 - The commands should be written without the plus just an space between it.
