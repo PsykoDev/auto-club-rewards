@@ -10,9 +10,14 @@ module.exports = function Autoclubrewards(mod) {
         mod.warn('It is highly recommended that you download the latest official version from the #proxy channel in http://tiny.cc/caalis-tera-proxy');
     }
 
-    const rewards = {
-        2: "Dragon's Flame",
+    const rewardsofficial = {
+        2: "Vergo's Flame",
         5: "Tera Club Supplies"
+    };
+
+    const rewardsclassic = {
+        7: "Seren's Gift Box",
+        8: "Vergo's Flame"
     };
 
     let readycheck = false,
@@ -26,11 +31,6 @@ module.exports = function Autoclubrewards(mod) {
 
     mod.command.add('clublist', () => {
         mod.command.message(`Club rewards will be claimed on ${mod.settings.names}.`);
-    });
-
-    mod.command.add('clubreward', () => {
-        mod.settings.enabled = !mod.settings.enabled;
-        mod.command.message(`Auto club rewards is now ${mod.settings.enabled ? "enabled" : "disabled"}.`);
     });
 
     mod.command.add('clubadd', (id) => {
@@ -48,6 +48,11 @@ module.exports = function Autoclubrewards(mod) {
         mod.command.message('Character names are removed successfully from the config.');
     });
 
+    mod.command.add('clubreward', () => {
+        mod.settings.enabled = !mod.settings.enabled;
+        mod.command.message(`Auto club rewards is now ${mod.settings.enabled ? "enabled" : "disabled"}.`);
+    });
+
     mod.hook('S_LOGIN', 12, (event) => {
         nameclaim = event.name;
     });
@@ -63,14 +68,21 @@ module.exports = function Autoclubrewards(mod) {
     mod.hook('S_PCBANGINVENTORY_DATALIST', 1, (event) => {
         if (!mod.settings.names.includes(nameclaim) || !mod.settings.enabled || !readycheck) return;
         event.inventory.forEach(function(item, index) {
-            if (rewards[item.slot] && item.amount == 1) {
-                claimrewards(item.slot);
+            if (mod.platform === 'classic') {
+                if (rewardsclassic[item.slot] && item.amount === 1)
+                    claimrewards(item.slot);
+            } else {
+                if (rewardsofficial[item.slot] && item.amount === 1)
+                    claimrewards(item.slot);
             }
         });
     });
 
     const claimrewards = _.debounce(function(slot) {
-        mod.command.message('Claiming ' + rewards[slot] + ' from Tera Club bar.');
+        if (mod.platform === 'classic') {
+            mod.command.message('Claiming ' + rewardsclassic[slot] + ' from Tera Club bar.');
+        }
+        else mod.command.message('Claiming ' + rewardsofficial[slot] + ' from Tera Club bar.');
         mod.send('C_PCBANGINVENTORY_USE_SLOT', 1, {
             slot: slot
         });

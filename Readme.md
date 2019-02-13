@@ -15,6 +15,14 @@
 
 ---
 
+## Configuration
+- If you want to edit the config you need to start proxy and go to server selection.
+    - Will be generated afterwards in the modules folder.
+- A list of things that can be edited can be found here only for experienced users.
+	- Names => Rewards will be claimed on the names between the quotation marks.
+
+---
+
 ## Note
 - You can enter multiple names at once which should be done with an comma between them.
 - If you are setting up the module for the first time you have to relog to make it work.
