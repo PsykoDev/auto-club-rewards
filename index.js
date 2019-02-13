@@ -81,8 +81,9 @@ module.exports = function Autoclubrewards(mod) {
     const claimrewards = _.debounce(function(slot) {
         if (mod.platform === 'classic') {
             mod.command.message('Claiming ' + rewardsclassic[slot] + ' from Tera Club bar.');
+        } else {
+            mod.command.message('Claiming ' + rewardsofficial[slot] + ' from Tera Club bar.');
         }
-        else mod.command.message('Claiming ' + rewardsofficial[slot] + ' from Tera Club bar.');
         mod.send('C_PCBANGINVENTORY_USE_SLOT', 1, {
             slot: slot
         });

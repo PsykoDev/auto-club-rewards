@@ -3,7 +3,7 @@
 ---
 
 ## Console Command
-- Type `/8 clubreward` to enable or disable the module.
+- Type `/8 clubreward` to enable or disable the module. Enabled by default.
 - Type `/8 clublist` for showing up an current list of already added characters.
 - Type `/8 clubadd + name` to set the character where the rewards should be claimed on.
 - Type `/8 clubremove` to clear the complete name list you made since you can add more than one name.
