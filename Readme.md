@@ -22,7 +22,7 @@
 ---
 
 - A list of things that can be edited can be found here. Only for experienced users.
-	- Names => Rewards will be claimed on the names between the quotation marks.
+	- Names => Rewards will be claimed on the names you are adding.
 
 ---
 
