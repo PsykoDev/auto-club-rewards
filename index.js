@@ -62,16 +62,17 @@ module.exports = function Autoclubrewards(mod) {
     });
 
     mod.hook('S_PCBANGINVENTORY_DATALIST', 1, (event) => {
-        if (!mod.settings.names.includes(nameclaim) || !mod.settings.enabled || !readycheck) return;
-        event.inventory.forEach(function(item, index) {
-            if (mod.platform === 'classic') {
-                if (rewardsclassic[item.slot] && item.amount === 1)
-                    claimrewards(item.slot);
-            } else {
-                if (rewardsofficial[item.slot] && item.amount === 1)
-                    claimrewards(item.slot);
-            }
-        });
+        if (mod.settings.names.includes(nameclaim) && mod.settings.enabled && readycheck) {
+            event.inventory.forEach(function(item, index) {
+                if (mod.platform === 'classic') {
+                    if (rewardsclassic[item.slot] && item.amount === 1)
+                        claimrewards(item.slot);
+                } else {
+                    if (rewardsofficial[item.slot] && item.amount === 1)
+                        claimrewards(item.slot);
+                }
+            });
+        }
     });
 
     const claimrewards = _.debounce(function(slot) {
