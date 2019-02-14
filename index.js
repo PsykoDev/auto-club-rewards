@@ -1,5 +1,4 @@
 const SettingsUI = require('tera-mod-ui').Settings;
-
 const _ = require('lodash')
 
 module.exports = function Autoclubrewards(mod) {
@@ -23,34 +22,31 @@ module.exports = function Autoclubrewards(mod) {
     let readycheck = false,
         nameclaim;
 
-    mod.command.add('clubconfig', () => {
-        if (ui) {
-            ui.show();
+    mod.command.add('club', (arg_1, arg_2) => {
+        if (arg_1 === undefined) {
+            mod.settings.enabled = !mod.settings.enabled;
+            mod.command.message(`Auto club rewards is now ${mod.settings.enabled ? "enabled" : "disabled"}.`);
         }
-    });
-
-    mod.command.add('clublist', () => {
-        mod.command.message(`Club rewards will be claimed on ${mod.settings.names}.`);
-    });
-
-    mod.command.add('clubadd', (id) => {
-        if (mod.settings.names.length === 0) {
-            mod.settings.names = id.replace(/^.{1-9}/g, '');
-            mod.command.message(`Club rewards will be claimed on ${mod.settings.names}.`);
-        } else {
-            mod.settings.names = mod.settings.names + ',' + id.replace(/^.{1-9}/g, '');
+        else if (arg_1 === "add")
+        {
+            mod.settings.names = arg_2;
             mod.command.message(`Club rewards will be claimed on ${mod.settings.names}.`);
         }
-    });
-
-    mod.command.add('clubremove', () => {
-        mod.settings.names = '';
-        mod.command.message('Character names are removed successfully from the config.');
-    });
-
-    mod.command.add('clubreward', () => {
-        mod.settings.enabled = !mod.settings.enabled;
-        mod.command.message(`Auto club rewards is now ${mod.settings.enabled ? "enabled" : "disabled"}.`);
+        else if (arg_1 === "list")
+        {
+            mod.command.message(`Club rewards will be claimed on ${mod.settings.names}.`);
+        }
+        else if (arg_1 === "remove")
+        {
+            mod.settings.names = '';
+            mod.command.message('Character names are removed successfully from the config.');
+        }
+        else if (arg_1 === "config")
+        {
+            if (ui) {
+                ui.show();
+            }
+        }
     });
 
     mod.hook('S_LOGIN', 12, (event) => {
