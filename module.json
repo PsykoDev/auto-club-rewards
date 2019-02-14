@@ -1,5 +1,5 @@
 {
-    "disableAutoUpdate": true,
+    "disableAutoUpdate": false,
     "name": "Auto Club Rewards",
     "author": "Shalltearz",
     "description": "Tera proxy module which automatically claims the club rewards for you.",
