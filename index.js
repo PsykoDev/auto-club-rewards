@@ -27,22 +27,18 @@ module.exports = function Autoclubrewards(mod) {
             mod.settings.enabled = !mod.settings.enabled;
             mod.command.message(`Auto club rewards is now ${mod.settings.enabled ? "enabled" : "disabled"}.`);
         }
-        else if (arg_1 === "add")
-        {
+        else if (arg_1 === "add") {
             mod.settings.names = arg_2;
             mod.command.message(`Club rewards will be claimed on ${mod.settings.names}.`);
         }
-        else if (arg_1 === "list")
-        {
+        else if (arg_1 === "list") {
             mod.command.message(`Club rewards will be claimed on ${mod.settings.names}.`);
         }
-        else if (arg_1 === "remove")
-        {
+        else if (arg_1 === "remove") {
             mod.settings.names = '';
             mod.command.message('Character names are removed successfully from the config.');
         }
-        else if (arg_1 === "config")
-        {
+        else if (arg_1 === "config") {
             if (ui) {
                 ui.show();
             }
