@@ -29,6 +29,6 @@
 ## Note
 - If you are adding a new name or setting up the module for the first time you have to relog to make it work.
 - If you add multiple names the rewards will be claimed on the first character in the list after login.
-- If there are already names in the list and you add a new one the list will be overwritten.
 - You can enter multiple names at once which should be done with an comma between them.
+- If there are already names in the list and you add a new one the list will be overwritten.
 - The commands should be written without the plus just an space between it.
