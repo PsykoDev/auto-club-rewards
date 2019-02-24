@@ -23,7 +23,7 @@ module.exports = function Autoclubrewards(mod) {
         nameclaim;
 
     mod.command.add('club', (arg_1, arg_2) => {
-        if (arg_1 === undefined) {
+        if (arg_1 === "rewards") {
             mod.settings.enabled = !mod.settings.enabled;
             mod.command.message(`Auto club rewards is now ${mod.settings.enabled ? "enabled" : "disabled"}.`);
         }
