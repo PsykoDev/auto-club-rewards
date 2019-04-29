@@ -41,7 +41,7 @@ module.exports = function Auto_Club_Rewards(mod) {
         }
     });
 
-    mod.hook('S_LOAD_TOPO', 3, (event) => {
+    mod.game.me.on('change_zone', () => {
         ready_check = false;
     });
 
