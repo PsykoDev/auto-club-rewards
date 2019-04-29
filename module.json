@@ -2,7 +2,7 @@
     "disableAutoUpdate": false,
     "name": "Auto Club Rewards",
     "author": "Shalltearz",
-    "description": "Tera proxy module which automatically claims the club rewards for you.",
+    "description": "Tera toolbox module which automatically claims the club rewards for you.",
     "version": "1.0",
     "options": {
         "niceName": "Auto Club Rewards",

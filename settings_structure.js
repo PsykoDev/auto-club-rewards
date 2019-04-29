@@ -6,7 +6,7 @@ module.exports = [
     },
     {
         "key": "names",
-        "name": "Here you can add your character for claiming the rewards.",
+        "name": "Add your character name here which should claim the items.",
         "type": "string"
     }
 ];
