@@ -50,7 +50,7 @@ module.exports = function Auto_Club_Rewards(mod) {
     });
 
     mod.hook('S_PCBANGINVENTORY_DATALIST', 1, (event) => {
-        if (mod.settings.names.includes(mod.game.me.name) && mod.settings.enabled && ready_check) {
+        if (mod.settings.enabled && ready_check && mod.settings.names.includes(mod.game.me.name)) {
             event.inventory.forEach(function(item, index) {
                 if (rewards[item.slot] && item.amount === 1) {
                     claim_rewards(item.slot);
@@ -68,7 +68,7 @@ module.exports = function Auto_Club_Rewards(mod) {
 
     let ui = null;
     if (global.TeraProxy.GUIMode) {
-        ui = new SettingsUI(mod, require('./settings_structure'), mod.settings, { height: 155 }, { alwaysOnTop: true });
+        ui = new SettingsUI(mod, require('./settings_structure'), mod.settings, { height: 130 }, { alwaysOnTop: true });
         ui.on('update', settings => { mod.settings = settings; });
 
         this.destructor = () => {
