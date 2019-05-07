@@ -8,7 +8,7 @@ module.exports = function Auto_Club_Rewards(mod) {
     if (mod.proxyAuthor !== 'caali' || !global.TeraProxy) {
         mod.warn('You are trying to use this module on an unsupported legacy version of tera-proxy.');
         mod.warn('The module may not work as expected, and even if it works for now, it may break at any point in the future!');
-        mod.warn('It is highly recommended that you download the latest official version from the #proxy channel in http://tiny.cc/caalis-tera-proxy');
+        mod.warn('It is highly recommended that you download the latest official version from the #toolbox channel in http://tiny.cc/caalis-tera-toolbox');
     }
 
     const rewards = {
@@ -50,12 +50,14 @@ module.exports = function Auto_Club_Rewards(mod) {
     });
 
     mod.hook('S_PCBANGINVENTORY_DATALIST', 1, (event) => {
-        if (mod.settings.enabled && ready_check && mod.settings.names.includes(mod.game.me.name)) {
-            event.inventory.forEach(function(item, index) {
-                if (rewards[item.slot] && item.amount === 1) {
-                    claim_rewards(item.slot);
-                }
-            });
+        if (mod.settings.enabled) {
+            if (ready_check && mod.settings.names.includes(mod.game.me.name)) {
+                event.inventory.forEach(function(item, index) {
+                    if (rewards[item.slot] && item.amount === 1) {
+                        claim_rewards(item.slot);
+                    }
+                });
+            }
         }
     });
 
