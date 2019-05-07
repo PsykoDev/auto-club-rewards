@@ -5,10 +5,10 @@
 ## Console Commands
 | Command | Description | Status |
  :---: | :---: | :---: |
-| `/8 club rewards` | To enable or disable the module. | Enabled by default. |
-| `/8 club add` | To set the character name where the rewards should be claimed on. |  |
-| `/8 club list` | For showing up an current list of already added characters. |  |
-| `/8 club clear` | To clear the complete name list for adding other names. |  |
+| `/8 autoclub` | To enable or disable the module. | Enabled by default. |
+| `/8 autoclub add` | To set the character name where the rewards should be claimed on. |  |
+| `/8 autoclub list` | For showing up an current list of already added characters. |  |
+| `/8 autoclub clear` | To clear the complete name list for adding other names. |  |
 
 
 ---

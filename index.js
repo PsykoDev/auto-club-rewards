@@ -18,8 +18,8 @@ module.exports = function Auto_Club_Rewards(mod) {
 
     let ready_check = false;
 
-    mod.command.add('club', (arg_1) => {
-        if (arg_1 === 'rewards') {
+    mod.command.add('autoclub', (arg_1) => {
+        if (arg_1 === undefined) {
             mod.settings.enabled = !mod.settings.enabled;
             mod.command.message(`Auto club rewards is now ${mod.settings.enabled ? 'enabled'.clr('00ff04') : 'disabled'.clr('ff0000')}.`);
         }
