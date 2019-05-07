@@ -50,13 +50,12 @@ module.exports = function Auto_Club_Rewards(mod) {
     });
 
     mod.hook('S_PCBANGINVENTORY_DATALIST', 1, (event) => {
-        if (mod.settings.enabled && ready_check && mod.settings.names.includes(mod.game.me.name)) {
-            event.inventory.forEach(function(item, index) {
-                if (rewards[item.slot] && item.amount === 1) {
-                    claim_rewards(item.slot);
-                }
-            });
-        }
+        if (!mod.settings.enabled || !ready_check || !mod.settings.names.includes(mod.game.me.name)) return;
+        event.inventory.forEach(function(item, index) {
+            if (rewards[item.slot] && item.amount === 1) {
+                claim_rewards(item.slot);
+            }
+        });
     });
 
     const claim_rewards = _.debounce(function(slot) {

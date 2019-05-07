@@ -16,12 +16,12 @@
 ## Interface Commands
 | Command | Description |
  :---: | :---: |
-| `/8 club config` | To enable or disable the module and add or remove names. |  |
+| `/8 autoclub config` | To enable or disable the module and add or remove names. |  |
 
 ---
 
 ## Configuration
-- If you want to edit the config you need to start proxy and go to server selection.
+- If you want to edit the config you need to start tera toolbox and go to server selection.
     - Will be generated afterwards in the modules folder.
 
 ---
