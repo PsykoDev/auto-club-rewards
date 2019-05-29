@@ -1,7 +1,6 @@
-String.prototype.clr = function (hexColor) { return `<font color='#${hexColor}'>${this}</font>` };
+String.prototype.clr = function(hex_color) { return `<font color='#${hex_color}'>${this}</font>`; }
 
 const SettingsUI = require('tera-mod-ui').Settings;
-const _ = require('lodash')
 
 module.exports = function Auto_Club_Rewards(mod) {
 
@@ -11,28 +10,26 @@ module.exports = function Auto_Club_Rewards(mod) {
         mod.warn('It is highly recommended that you download the latest official version from the #toolbox channel in http://tiny.cc/caalis-tera-toolbox');
     }
 
-    const rewards = {
-        2: 'Vergos Flame',
-        5: 'Tera Club Supplies'
-    };
+    const vergos_flame = 154942;
+    const elite_supply = 153498;
 
     let ready_check = false;
 
     mod.command.add('autoclub', (arg_1) => {
         if (arg_1 === undefined) {
             mod.settings.enabled = !mod.settings.enabled;
-            mod.command.message(`Auto club rewards is now ${mod.settings.enabled ? 'enabled'.clr('00ff04') : 'disabled'.clr('ff0000')}.`);
+            mod.command.message(`Auto club rewards is now ${mod.settings.enabled ? 'enabled'.clr('00ff04') : 'disabled'.clr('ff1d00')}.`);
         }
         else if (arg_1 === 'add') {
             mod.settings.names = mod.game.me.name;
-            mod.command.message(`Club rewards will be claimed on ${mod.settings.names}.`);
+            mod.command.message(`Club rewards will be claimed on | ${mod.settings.names} | .`.clr('009dff'));
         }
         else if (arg_1 === 'list') {
-            mod.command.message(`Club rewards will be claimed on ${mod.settings.names}.`);
+            mod.command.message(`Club rewards will be claimed on | ${mod.settings.names} | .`.clr('009dff'));
         }
         else if (arg_1 === 'clear') {
             mod.settings.names = '';
-            mod.command.message('Character names are removed successfully from the config.');
+            mod.command.message('Character names are removed successfully from the config.'.clr('00ff04'));
         }
         else if (arg_1 === 'config') {
             if (ui) {
@@ -41,35 +38,63 @@ module.exports = function Auto_Club_Rewards(mod) {
         }
     });
 
-    mod.game.me.on('change_zone', () => {
+    mod.game.on('enter_loading_screen', () => {
         ready_check = false;
     });
 
-    mod.hook('C_LOAD_TOPO_FIN', 1, (event) => {
+    mod.game.on('leave_loading_screen', () => {
         ready_check = true;
     });
 
-    mod.hook('S_PCBANGINVENTORY_DATALIST', 1, (event) => {
+    mod.hook('S_PREMIUM_SLOT_DATALIST', 2, (event) => {
         if (!mod.settings.enabled || !ready_check || !mod.settings.names.includes(mod.game.me.name)) return;
-        event.inventory.forEach(function(item, index) {
-            if (rewards[item.slot] && item.amount === 1) {
-                claim_rewards(item.slot);
+        for (let set of event.sets) {
+            for (let inven of set.inventory) {
+                if (inven.id === vergos_flame && inven.amount > 0) {
+                    const packet_data = {
+                        set: set.id,
+                        slot: inven.slot,
+                        type: inven.type,
+                        id: inven.id
+                    }
+                    use_slot(packet_data);
+                }
+                if (inven.id === elite_supply && inven.amount > 0) {
+                    const packet_data = {
+                        set: set.id,
+                        slot: inven.slot,
+                        type: inven.type,
+                        id: inven.id
+                    }
+                    use_slot(packet_data);
+                }
             }
-        });
+        }
     });
 
-    const claim_rewards = _.debounce(function(slot) {
-        mod.command.message(`Claiming ${rewards[slot]} from your club bar.`);
-        mod.send('C_PCBANGINVENTORY_USE_SLOT', 1, {
-            slot: slot
-        });
-    }, 1000);
+    const use_slot = (packet_info) => {
+        mod.send('C_USE_PREMIUM_SLOT', 1,
+            packet_info
+        );
+        if (packet_info.id === vergos_flame) {
+            mod.command.message(`Successfully claimed | Vergo's Flame | from your club bar.`.clr('00ff04'));
+        }
+        if (packet_info.id === elite_supply) {
+            mod.command.message(`Successfully claimed | Club Supplies | from your club bar.`.clr('00ff04'));
+        }
+    }
 
     let ui = null;
-    if (global.TeraProxy.GUIMode) {
-        ui = new SettingsUI(mod, require('./settings_structure'), mod.settings, { height: 130 }, { alwaysOnTop: true });
-        ui.on('update', settings => { mod.settings = settings; });
 
+    if (global.TeraProxy.GUIMode) {
+        ui = new SettingsUI(mod, require('./settings_structure'), mod.settings, {
+            alwaysOnTop: true,
+            width: 800,
+            height: 130
+        });
+        ui.on('update', settings => {
+            mod.settings = settings;
+        });
         this.destructor = () => {
             if (ui) {
                 ui.close();

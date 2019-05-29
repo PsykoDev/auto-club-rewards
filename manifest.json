@@ -1,14 +1,13 @@
 {
     "files": {
-        "Readme.md": "90b3c88765f30d2f52c138bd5b8c1b42a861b1dd4a83d3c145bf1fec0e569e13",
-        "index.js": "a1ec5d4258fa158bfdc20334127cc222f858e7e4f335767ec06fd9d8e23d11b1",
+        "Readme.md": "d479a6c2defc3a2d16e30a98a61a59421d75dec49f240fb1fa976d3f65044564",
+        "index.js": "dbc247f81239dba86affcde008bd7faad1bbccc04754adf5601b9e0794d10109",
         "module.json": "853f309724d68ec999afb59b156d7fe8defff49f31b8bafd06d4b4f3bbb81753",
         "settings_migrator.js": "82dc67fb583147bd5805c97c67669eb7e1044293f0cbdff525a62f9c58bd21e7",
         "settings_structure.js": "56a0122f411bca67edc8c1e59b0cad3d9693186de046f9fed4f95bfb2f9f24f9"
     },
     "defs": {
-        "C_LOAD_TOPO_FIN": 1,
-        "C_PCBANGINVENTORY_USE_SLOT": 1,
-        "S_PCBANGINVENTORY_DATALIST": 1
+        "C_USE_PREMIUM_SLOT": 1,
+        "S_PREMIUM_SLOT_DATALIST": 2
     }
 }
