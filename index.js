@@ -29,7 +29,7 @@ module.exports = function Auto_Club_Rewards(mod) {
         }
         else if (arg_1 === 'clear') {
             mod.settings.names = '';
-            mod.command.message('Character names are removed successfully from the config.'.clr('00ff04'));
+            mod.command.message('Character names are successfully removed from the config file.'.clr('00ff04'));
         }
         else if (arg_1 === 'config') {
             if (ui) {
@@ -89,7 +89,7 @@ module.exports = function Auto_Club_Rewards(mod) {
     if (global.TeraProxy.GUIMode) {
         ui = new SettingsUI(mod, require('./settings_structure'), mod.settings, {
             alwaysOnTop: true,
-            width: 800,
+            width: 850,
             height: 130
         });
         ui.on('update', settings => {
