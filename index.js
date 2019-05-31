@@ -77,7 +77,7 @@ module.exports = function Auto_Club_Rewards(mod) {
             packet_info
         );
         if (packet_info.id === vergos_flame) {
-            mod.command.message(`Successfully claimed | Vergo's Flame | from your club bar.`.clr('00ff04'));
+            mod.command.message(`Successfully claimed | Vergos Flame | from your club bar.`.clr('00ff04'));
         }
         if (packet_info.id === elite_supply) {
             mod.command.message(`Successfully claimed | Club Supplies | from your club bar.`.clr('00ff04'));
