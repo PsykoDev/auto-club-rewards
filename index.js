@@ -1,4 +1,4 @@
-String.prototype.clr = function(hex_color) { return `<font color='#${hex_color}'>${this}</font>`; }
+String.prototype.clr = function(hex_color) { return `<font color='#${hex_color}'>${this}</font>`; };
 
 const SettingsUI = require('tera-mod-ui').Settings;
 
@@ -56,7 +56,7 @@ module.exports = function Auto_Club_Rewards(mod) {
                         slot: inven.slot,
                         type: inven.type,
                         id: inven.id
-                    }
+                    };
                     use_slot(packet_data);
                 }
                 if (inven.id === elite_supply && inven.amount > 0) {
@@ -65,7 +65,7 @@ module.exports = function Auto_Club_Rewards(mod) {
                         slot: inven.slot,
                         type: inven.type,
                         id: inven.id
-                    }
+                    };
                     use_slot(packet_data);
                 }
             }
