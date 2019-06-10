@@ -13,16 +13,21 @@ module.exports = function Auto_Club_Rewards(mod) {
     const vergos_flame = 154942;
     const elite_supply = 153498;
 
-    let ready_check = false;
+    let packet_slot_2 = null;
+    let packet_slot_5 = null;
 
     mod.command.add('autoclub', (arg_1) => {
         if (arg_1 === undefined) {
             mod.settings.enabled = !mod.settings.enabled;
             mod.command.message(`Auto club rewards is now ${mod.settings.enabled ? 'enabled'.clr('00ff04') : 'disabled'.clr('ff1d00')}.`);
+            use_slot(packet_slot_2);
+            use_slot(packet_slot_5);
         }
         else if (arg_1 === 'add') {
             mod.settings.names = mod.game.me.name;
             mod.command.message(`Club rewards will be claimed on | ${mod.settings.names} | .`.clr('009dff'));
+            use_slot(packet_slot_2);
+            use_slot(packet_slot_5);
         }
         else if (arg_1 === 'list') {
             mod.command.message(`Club rewards will be claimed on | ${mod.settings.names} | .`.clr('009dff'));
@@ -38,48 +43,42 @@ module.exports = function Auto_Club_Rewards(mod) {
         }
     });
 
-    mod.game.on('enter_loading_screen', () => {
-        ready_check = false;
-    });
-
-    mod.game.on('leave_loading_screen', () => {
-        ready_check = true;
-    });
-
     mod.hook('S_PREMIUM_SLOT_DATALIST', 2, (event) => {
-        if (!mod.settings.enabled || !ready_check || !mod.settings.names.includes(mod.game.me.name)) return;
         for (let set of event.sets) {
             for (let inven of set.inventory) {
                 if (inven.id === vergos_flame && inven.amount > 0) {
-                    const packet_data = {
+                    packet_slot_2 = {
                         set: set.id,
                         slot: inven.slot,
                         type: inven.type,
                         id: inven.id
                     };
-                    use_slot(packet_data);
+                    use_slot(packet_slot_2);
                 }
                 if (inven.id === elite_supply && inven.amount > 0) {
-                    const packet_data = {
+                    packet_slot_5 = {
                         set: set.id,
                         slot: inven.slot,
                         type: inven.type,
                         id: inven.id
                     };
-                    use_slot(packet_data);
+                    use_slot(packet_slot_5);
                 }
             }
         }
     });
 
     const use_slot = (packet_info) => {
+        if (!mod.settings.enabled || !mod.settings.names.includes(mod.game.me.name) || !packet_info) return;
         mod.send('C_USE_PREMIUM_SLOT', 1,
             packet_info
         );
         if (packet_info.id === vergos_flame) {
+            packet_slot_2 = null;
             mod.command.message(`Successfully claimed | Vergos Flame | from your club bar.`.clr('00ff04'));
         }
         if (packet_info.id === elite_supply) {
+            packet_slot_5 = null;
             mod.command.message(`Successfully claimed | Club Supplies | from your club bar.`.clr('00ff04'));
         }
     }
@@ -94,6 +93,8 @@ module.exports = function Auto_Club_Rewards(mod) {
         });
         ui.on('update', settings => {
             mod.settings = settings;
+            use_slot(packet_slot_2);
+            use_slot(packet_slot_5);
         });
         this.destructor = () => {
             if (ui) {

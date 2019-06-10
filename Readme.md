@@ -36,4 +36,3 @@
 ## Note
 - If you enter multiple names in the config file or settings interface you need to put an comma between each name you add.
 - If there is already a name in the list and you add a new one with the clubadd command the list will be overwritten.
-- If you are using the module for the first time you have to relog after adding your character name.
