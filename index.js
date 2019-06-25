@@ -17,7 +17,7 @@ module.exports = function Auto_Club_Rewards(mod) {
     let packet_slot_5 = null;
 
     mod.command.add('autoclub', (arg_1) => {
-        if (arg_1 === undefined) {
+        if (!arg_1) {
             mod.settings.enabled = !mod.settings.enabled;
             mod.command.message(`Auto club rewards is now ${mod.settings.enabled ? 'enabled'.clr('00ff04') : 'disabled'.clr('ff1d00')}.`);
             use_slot(packet_slot_2);
