@@ -1,6 +1,6 @@
 const Default_Settings = {
     "enabled": true,
-    "names": ""
+    "names": []
 };
 
 module.exports = function Migrate_Settings(from_ver, to_ver, settings) {

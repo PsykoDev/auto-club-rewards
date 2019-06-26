@@ -7,7 +7,7 @@
     "options": {
         "niceName": "Auto Club Rewards",
         "guiName": "Auto Club Rewards",
-        "settingsVersion": 1,
+        "settingsVersion": 1.1,
         "settingsFile": "config.json",
         "settingsMigrator": "settings_migrator.js"
     },

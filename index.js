@@ -24,7 +24,7 @@ module.exports = function Auto_Club_Rewards(mod) {
             use_slot(packet_slot_5);
         }
         else if (arg_1 === 'add') {
-            mod.settings.names = mod.game.me.name;
+            mod.settings.names = mod.game.me.name.split();
             mod.command.message(`Club rewards will be claimed on | ${mod.settings.names} | .`.clr('009dff'));
             use_slot(packet_slot_2);
             use_slot(packet_slot_5);
@@ -33,7 +33,7 @@ module.exports = function Auto_Club_Rewards(mod) {
             mod.command.message(`Club rewards will be claimed on | ${mod.settings.names} | .`.clr('009dff'));
         }
         else if (arg_1 === 'clear') {
-            mod.settings.names = '';
+            mod.settings.names = [];
             mod.command.message('Character names are successfully removed from the config file.'.clr('00ff04'));
         }
         else if (arg_1 === 'config') {
@@ -92,6 +92,7 @@ module.exports = function Auto_Club_Rewards(mod) {
             height: 130
         });
         ui.on('update', settings => {
+            mod.settings.names = mod.settings.names.split(/\s*(?:,|$)\s*/);
             mod.settings = settings;
             use_slot(packet_slot_2);
             use_slot(packet_slot_5);
