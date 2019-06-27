@@ -92,7 +92,9 @@ module.exports = function Auto_Club_Rewards(mod) {
             height: 130
         });
         ui.on('update', settings => {
-            mod.settings.names = mod.settings.names.split(/\s*(?:,|$)\s*/);
+            if (typeof mod.settings.names === 'string') {
+                mod.settings.names = mod.settings.names.split(/\s*(?:,|$)\s*/);
+            }
             mod.settings = settings;
             use_slot(packet_slot_2);
             use_slot(packet_slot_5);
