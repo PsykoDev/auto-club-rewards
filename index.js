@@ -30,7 +30,7 @@ module.exports = function Auto_Club_Rewards(mod) {
             use_slot(packet_slot_2);
         }
         else if (arg_1 === 'list') {
-            mod.command.message(`[Settings] Club rewards will be claimed on | ${mod.settings.names} | now.`.clr('009dff'));
+            mod.command.message(`[Settings] Club rewards will be claimed on | ${mod.settings.names} | currently.`.clr('009dff'));
         }
         else if (arg_1 === 'clear') {
             mod.settings.names = [];
