@@ -1,9 +1,14 @@
 {
     "files": {
-        "Readme.md": "282894c6f2a193d22545a921eb34af53eeafb663c3ff740c36583c21fef4891d",
-        "index.js": "afbd8041f50a4d8c9d87b1430ef7cc75c6b55fa8e9b04ded4b166bd2b623b84a",
-        "module.json": "b0dc69816241e3f789a7ca666579858f17550aaa768f7644de3ec586ced1ba3e",
-        "settings_migrator.js": "c68c2a57584fc382c3d12e38ade1e1d33a1a7e063a8b36bffc3daaae90186548",
+        "Additional-Data/Readme.md": "2b7422eba522f549fbf3da52bb54230daa493100181467e5b697721ea2cf778d",
+        "Additional-Data/Reward-Icons/Delivery_Elite_Consumable_Box.png": "97c4aec954192d98f18b54ebeec5191f93874959230df7c8a6347afae0f6f2b4",
+        "Additional-Data/Reward-Icons/Dragon's_Flame.png": "b5920b6d6a3f9245b7a123f628dd71fd96742cc24e13d7ea07bc90beba9340e7",
+        "Additional-Data/Reward-Icons/Elite_Gift_Box.png": "694bf099d7cdd7e5a1d297424c7f39221ddaec4cd482fdfcbbe8d7d2cce0c536",
+        "Additional-Data/Reward-Icons/Tera_Club_Supplies.png": "49a2e9c1310a5b864a23362c7e8e89417f414764fa8a54d273a434d4b4086160",
+        "Readme.md": "8cca9f6c22f1654687e2831a37e55ad1e46bcbaff2776d0623f7cc14a6c1f14d",
+        "index.js": "35f2f3987521eff1fce46c99ad05f64cd21cd6cec5555780ac96fce9c8026210",
+        "module.json": "1bb9b7ac24c073a9b2016c4b4c0738f9e0a75c4030cd40e98f5858e228b37582",
+        "settings_migrator.js": "50af4a4a25748452fa3be433ce6eaa6db49a874dfec0c8fa26b0e22ff39dc158",
         "settings_structure.js": "a669b9c564228db29bfff73793b71494d3c27a76bf41756227754cc9269f1cc5"
     },
     "defs": {
