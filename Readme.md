@@ -36,6 +36,5 @@
 ### Note
 - If you enter multiple names in the config file or settings interface you need to put an comma between each name.
 - An list of the rewards which are currently supported by the module can be found here [Reward Overview](https://github.com/Tera-Shiraneko/auto-club-rewards/tree/master/Additional-Data).
-- The language of the item name in the claim message is depending of your ingame language settings.
 - If there is already a name in the list and you add a new one via command the list will be overwritten.
-- In case you want support for your region too send me the item id's of those daily reward items.
+- In case you want support for your region too send me the item id's of the daily reward items.
