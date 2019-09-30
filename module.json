@@ -2,7 +2,7 @@
     "disableAutoUpdate": false,
     "name": "Auto Club Rewards",
     "author": "Shalltearz",
-    "description": "Tera toolbox module to automatically claim the club rewards on the desired characters.",
+    "description": "Tera toolbox module which is claiming the club rewards on the desired characters.",
     "version": "1.0",
     "options": {
         "niceName": "Auto Club Rewards",

@@ -1,4 +1,4 @@
-### Tera toolbox module to automatically claim the club rewards on the desired characters.
+### Tera toolbox module which is claiming the club rewards on the desired characters.
 
 ---
 
