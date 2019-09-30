@@ -1,7 +1,7 @@
 module.exports = [
     {
         "key": "enabled",
-        "name": "Automatically claim the club rewards on self defined characters.",
+        "name": "Automatically claim the club rewards on the desired characters.",
         "type": "bool"
     },
     {
