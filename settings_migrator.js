@@ -2,7 +2,7 @@ const fs = require("fs");
 
 const Default_Settings = {
     "enabled": true,
-    "names": []
+    "name_list": []
 };
 
 module.exports = function Migrate_Settings(from_ver, to_ver, settings) {

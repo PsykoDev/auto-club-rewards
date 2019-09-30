@@ -5,17 +5,18 @@
 ### Console Commands
 | Command | Description | Status |
 | :---: | :---: | :---: |
-| `/8 autoclub` | Automatic claiming of club rewards on the desired character. | Enabled by default. |
-| `/8 autoclub add` | To add the name of your currently logged in character to the name list. |  |
-| `/8 autoclub list` | To show your current name list of already added characters. |  |
-| `/8 autoclub clear` | To clear the complete name list if you want to add other characters. |  |
+| `/8 autoclub` | To automatically claim the club rewards on self defined characters. | Enabled by default. |
+| `/8 autoclub add + name` | To add the desired names to the name list. |  |
+| `/8 autoclub remove + name` | To remove the desired names from the name list. |  |
+| `/8 autoclub clear` | To remove all added names from the name list. |  |
+| `/8 autoclub show` | To show all added names in your toolbox chat. |  |
 
 ---
 
 ### Interface Commands
 | Command | Description |
 | :---: | :---: |
-| `/8 autoclub config` | To enable or disable the module and add or remove names. |
+| `/8 autoclub config` | To enable or disable the functions written above and edit your name list. |
 
 ---
 
@@ -27,14 +28,14 @@
 
 - An list of things that can be edited can be found here. Only for experienced users.
 
-| Config Name | Description |
+| Name | Description |
 | :---: | :---: |
-| `names` | Add your character name here which should claim the rewards. |
+| `name_list` | Here you can add or remove names to the name list. |
 
 ---
 
 ### Note
 - If you enter multiple names in the config file or settings interface you need to put an comma between each name.
 - An list of the rewards which are currently supported by the module can be found here [Reward Overview](https://github.com/Tera-Shiraneko/auto-club-rewards/tree/master/Additional-Data).
-- If there is already a name in the list and you add a new one via command the list will be overwritten.
 - In case you want support for your region too send me the item id's of the daily reward items.
+- The commands should be written without the plus just an space between it.

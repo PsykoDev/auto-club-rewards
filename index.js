@@ -4,10 +4,15 @@ const SettingsUI = require('tera-mod-ui').Settings;
 
 module.exports = function Auto_Club_Rewards(mod) {
 
+    let command = mod.command;
+    let config = mod.settings;
+    let data = mod.game.data;
+    let player = mod.game.me;
+
     if (!['eu', 'na', 'ru'].includes(mod.clientInterface.info.region)) {
-      mod.settings.enabled = false;
-      mod.warn('The region you are playing on is not supported the module will be disabled now.');
-      return;
+        config.enabled = false;
+        mod.warn('The region you are playing on is not supported. The module will be disabled now.');
+        return;
     }
 
     const daily_rewards_1 = [154942, 169892, 216944];
@@ -16,25 +21,49 @@ module.exports = function Auto_Club_Rewards(mod) {
     let packet_slot_1 = null;
     let packet_slot_2 = null;
 
-    mod.command.add('autoclub', (arg_1) => {
+    command.add('autoclub', (arg_1, arg_2) => {
         if (!arg_1) {
-            mod.settings.enabled = !mod.settings.enabled;
-            mod.command.message(`${mod.settings.enabled ? '[Settings] The module is now enabled.'.clr('00ff04') : '[Settings] The module is now disabled.'.clr('ff1d00')}`);
+            config.enabled = !config.enabled;
+            command.message(`${config.enabled ? '[Settings] The module is now enabled.'.clr('00ff04') : '[Settings] The module is now disabled.'.clr('ff1d00')}`);
             use_slot(packet_slot_1);
             use_slot(packet_slot_2);
         }
-        else if (arg_1 === 'add') {
-            mod.settings.names = mod.game.me.name.split();
-            mod.command.message(`[Settings] Club rewards will be claimed on | ${mod.settings.names} | now.`.clr('009dff'));
-            use_slot(packet_slot_1);
-            use_slot(packet_slot_2);
+        else if (arg_1 === 'add' && arg_2) {
+            const name_index = config.name_list.indexOf(arg_2);
+            if (name_index === -1) {
+                config.name_list.push(arg_2);
+                command.message(`[Settings] Character | ${arg_2} | has been added to the name list.`.clr('009dff'));
+                use_slot(packet_slot_1);
+                use_slot(packet_slot_2);
+            } else {
+                command.message(`[Warning] Character | ${arg_2} | is already added to the name list.`.clr('ff00ff'));
+            }
         }
-        else if (arg_1 === 'list') {
-            mod.command.message(`[Settings] Club rewards will be claimed on | ${mod.settings.names} | now.`.clr('009dff'));
+        else if (arg_1 === 'remove' && arg_2) {
+            const name_index = config.name_list.indexOf(arg_2);
+            if (name_index != -1) {
+                config.name_list.splice(name_index, 1);
+                command.message(`[Settings] Character | ${arg_2} | has been removed from the name list.`.clr('009dff'));
+                use_slot(packet_slot_1);
+                use_slot(packet_slot_2);
+            } else {
+                command.message(`[Warning] Character | ${arg_2} | can not be found in the name list.`.clr('ff00ff'));
+            }
         }
         else if (arg_1 === 'clear') {
-            mod.settings.names = [];
-            mod.command.message('[Settings] Character names are successfully removed from the config file.'.clr('009dff'));
+            if (config.name_list.length) {
+                config.name_list = [];
+                command.message('[Settings] The name list is now cleared and can be reconfigured again to your liking.'.clr('009dff'));
+            } else {
+                command.message(`[Warning] Add an name to the name list before trying to clear an empty name list.`.clr('ff00ff'));
+            }
+        }
+        else if (arg_1 === 'show') {
+            if (config.name_list.length) {
+                command.message(`[Info] Found | ${config.name_list} | in the name list.`.clr('ffff00'));
+            } else {
+                command.message(`[Warning] Add an name to the name list before trying to show an empty name list.`.clr('ff00ff'));
+            }
         }
         else if (arg_1 === 'config') {
             if (ui) {
@@ -73,21 +102,26 @@ module.exports = function Auto_Club_Rewards(mod) {
     });
 
     const use_slot = (packet_info) => {
-        if (!mod.settings.enabled || !mod.settings.names.includes(mod.game.me.name) || !packet_info) return;
+        if (!config.enabled || !config.name_list.includes(player.name) || !packet_info) return;
         mod.send('C_USE_PREMIUM_SLOT', 1, packet_info);
-        if (daily_rewards_1.includes(packet_info.id)) {
-            packet_slot_1 = null;
-            mod.command.message(`[Info] Successfully claimed | ${mod.game.data.items.get(packet_info.id).name} | from your club bar.`.clr('ffff00'));
-        }
-        else if (daily_rewards_2.includes(packet_info.id)) {
-            packet_slot_2 = null;
-            mod.command.message(`[Info] Successfully claimed | ${mod.game.data.items.get(packet_info.id).name} | from your club bar.`.clr('ffff00'));
+        const item_info = data.items.get(packet_info.id);
+        if (item_info) {
+            if (daily_rewards_1.includes(item_info.id)) {
+                packet_slot_1 = null;
+                command.message(`[Info] Claimed | ${item_info.name} | from your club bar.`.clr('ffff00'));
+            }
+            else if (daily_rewards_2.includes(item_info.id)) {
+                packet_slot_2 = null;
+                command.message(`[Info] Claimed | ${item_info.name} | from your club bar.`.clr('ffff00'));
+            }
+        } else {
+            command.message('[Warning] The module can not find any item data which is needed for showing the name of the item.'.clr('ff00ff'));
         }
     }
 
     const check_config_file = () => {
-        if (!Array.isArray(mod.settings.names)) {
-            mod.settings.names = [];
+        if (!Array.isArray(config.name_list)) {
+            config.name_list = [];
             mod.error('Invalid name list settings detected default settings will be applied.');
         }
     };
@@ -95,16 +129,16 @@ module.exports = function Auto_Club_Rewards(mod) {
     let ui = null;
 
     if (global.TeraProxy.GUIMode) {
-        ui = new SettingsUI(mod, require('./settings_structure'), mod.settings, {
+        ui = new SettingsUI(mod, require('./settings_structure'), config, {
             alwaysOnTop: true,
             width: 850,
             height: 130
         });
         ui.on('update', settings => {
-            if (typeof mod.settings.names === 'string') {
-                mod.settings.names = mod.settings.names.split(/\s*(?:,|$)\s*/);
+            if (typeof config.name_list === 'string') {
+                config.name_list = config.name_list.split(/\s*(?:,|$)\s*/);
             }
-            mod.settings = settings;
+            config = settings;
             use_slot(packet_slot_1);
             use_slot(packet_slot_2);
         });
