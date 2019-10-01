@@ -36,6 +36,6 @@
 
 ### Note
 - An list of the rewards which are currently supported by the module can be found here [Reward Overview](https://github.com/Tera-Shiraneko/auto-club-rewards/tree/master/Additional-Data).
-- If you enter multiple character names in the config file or settings interface you need to put an comma between each name.
-- In case you want support for your region too send me the item id's of the daily reward items.
+- In case of multiple character names in the config file or settings interface you need to seperate them with a comma.
+- In case you want support for your region too send me the id's of the daily reward items.
 - The commands should be written without the plus just an space between it.
