@@ -6,7 +6,7 @@ module.exports = [
     },
     {
         "key": "name_list",
-        "name": "Here you can add or remove names to the name list.",
+        "name": "Add or remove character names to the name list.",
         "type": "string"
     }
 ];
