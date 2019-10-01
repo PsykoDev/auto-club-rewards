@@ -104,18 +104,13 @@ module.exports = function Auto_Club_Rewards(mod) {
     const use_slot = (packet_info) => {
         if (!config.enabled || !config.name_list.includes(player.name) || !packet_info) return;
         mod.send('C_USE_PREMIUM_SLOT', 1, packet_info);
-        const item_info = data.items.get(packet_info.id);
-        if (item_info) {
-            if (daily_rewards_1.includes(item_info.id)) {
-                packet_slot_1 = null;
-                command.message(`[Info] Claimed | ${item_info.name} | from your club bar.`.clr('ffff00'));
-            }
-            else if (daily_rewards_2.includes(item_info.id)) {
-                packet_slot_2 = null;
-                command.message(`[Info] Claimed | ${item_info.name} | from your club bar.`.clr('ffff00'));
-            }
-        } else {
-            command.message('[Warning] The module can not find any item data which is needed for showing the name of the item.'.clr('ff00ff'));
+        if (daily_rewards_1.includes(packet_info.id)) {
+            packet_slot_1 = null;
+            command.message(`[Info] Claimed | ${data.items.get(packet_info.id).name} | from your club bar.`.clr('ffff00'));
+        }
+        else if (daily_rewards_2.includes(packet_info.id)) {
+            packet_slot_2 = null;
+            command.message(`[Info] Claimed | ${data.items.get(packet_info.id).name} | from your club bar.`.clr('ffff00'));
         }
     }
 
