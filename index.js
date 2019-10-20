@@ -32,22 +32,22 @@ module.exports = function Auto_Club_Rewards(mod) {
             const name_index = config.name_list.indexOf(arg_2);
             if (name_index === -1) {
                 config.name_list.push(arg_2);
-                command.message(`[Settings] Character | ${arg_2} | has been added to the name list.`.clr('009dff'));
+                command.message(`[Settings] Character ${arg_2} has been added to the name list.`.clr('009dff'));
                 use_slot(packet_slot_1);
                 use_slot(packet_slot_2);
             } else {
-                command.message(`[Warning] Character | ${arg_2} | is already added to the name list.`.clr('ff00ff'));
+                command.message(`[Warning] Character ${arg_2} is already added to the name list.`.clr('ff00ff'));
             }
         }
         else if (arg_1 === 'remove' && arg_2) {
             const name_index = config.name_list.indexOf(arg_2);
             if (name_index != -1) {
                 config.name_list.splice(name_index, 1);
-                command.message(`[Settings] Character | ${arg_2} | has been removed from the name list.`.clr('009dff'));
+                command.message(`[Settings] Character ${arg_2} has been removed from the name list.`.clr('009dff'));
                 use_slot(packet_slot_1);
                 use_slot(packet_slot_2);
             } else {
-                command.message(`[Warning] Character | ${arg_2} | can not be found in the name list.`.clr('ff00ff'));
+                command.message(`[Warning] Character ${arg_2} can not be found in the name list.`.clr('ff00ff'));
             }
         }
         else if (arg_1 === 'clear') {
@@ -60,7 +60,7 @@ module.exports = function Auto_Club_Rewards(mod) {
         }
         else if (arg_1 === 'show') {
             if (config.name_list.length) {
-                command.message(`[Info] Found | ${config.name_list} | in the name list.`.clr('ffff00'));
+                command.message(`[Info] Found ${config.name_list} in the name list.`.clr('ffff00'));
             } else {
                 command.message(`[Warning] Add an name to the name list before trying to show an empty name list.`.clr('ff00ff'));
             }
@@ -101,25 +101,25 @@ module.exports = function Auto_Club_Rewards(mod) {
         }
     });
 
-    const use_slot = (packet_info) => {
+    function use_slot(packet_info) {
         if (!config.enabled || !config.name_list.includes(player.name) || !packet_info) return;
         mod.send('C_USE_PREMIUM_SLOT', 1, packet_info);
         if (daily_rewards_1.includes(packet_info.id)) {
             packet_slot_1 = null;
-            command.message(`[Info] Claimed | ${data.items.get(packet_info.id).name} | from your club bar.`.clr('ffff00'));
+            command.message(`[Info] Claimed ${data.items.get(packet_info.id).name} from your club bar.`.clr('ffff00'));
         }
         else if (daily_rewards_2.includes(packet_info.id)) {
             packet_slot_2 = null;
-            command.message(`[Info] Claimed | ${data.items.get(packet_info.id).name} | from your club bar.`.clr('ffff00'));
+            command.message(`[Info] Claimed ${data.items.get(packet_info.id).name} from your club bar.`.clr('ffff00'));
         }
     }
 
-    const check_config_file = () => {
+    function check_config_file() {
         if (!Array.isArray(config.name_list)) {
             config.name_list = [];
             mod.error('Invalid name list settings detected default settings will be applied.');
         }
-    };
+    }
 
     let ui = null;
 
